@@ -3,7 +3,7 @@ import './App.css'
 import Auth from './components/auth/Auth'
 import Debug from './components/Debug'
 import Nav from './components/Nav/Nav'
-import All from './components/auth/All/All'
+import All from './components/All/All'
 
 function App() {
 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./All.css";
-import Vulnerability from "../../Vulnerability";
+import Vulnerability from "../Vulnerability"
 
 export default function All({ token }) {
 	const [data, setData] = useState(null);
+	// state variable responsible for error loading
 	const [error, setError] = useState("");
 
 	useEffect(() => {
@@ -26,6 +27,7 @@ export default function All({ token }) {
 				const result = await response.json();
 				setData(Array.isArray(result.message) ? result.message : []);
 			} catch (err) {
+				// handling error display and collection
 				setError(err.message || "Could not load countries.");
 			}
 		};
@@ -48,16 +50,19 @@ export default function All({ token }) {
 					<p className="countriesEyebrow">Country data</p>
 					<h1 id="countries-heading">All countries</h1>
 				</div>
+				{/* SUCCESS STATE: if data is truthy, it will render span; else it wont' render anything */}
 				{data && (
 					<span className="countryCount">{data.length} records</span>
 				)}
 			</header>
 
+			{/* ERROR STATE: inverse of above, show error if an error exists else do nothing */}
 			{error && (
 				<p className="countriesMessage countriesError" role="alert">
 					{error}
 				</p>
 			)}
+			{/* LOADING STATE: if no error AND no data, render this */}
 			{!error && data === null && (
 				<p className="countriesMessage" role="status">
 					Loading country data…
@@ -109,7 +114,7 @@ export default function All({ token }) {
 					))}
 				</div>
 			)}
-		<Vulnerability />
+		{/* <Vulnerability /> */}
 		</section>
 	);
 }
