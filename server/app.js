@@ -29,8 +29,8 @@ app.use(express.json())
 app.use(cors())
 // app.use(headers)
 // we add the validator preceeding auth routes
-app.use(authValidator, authRoutes)
-app.use(validateRoutes, routes)
+app.use("/api/auth", authValidator, authRoutes)
+app.use("/api/routes", validateRoutes, routes)
 app.use((req, res) => {
 	res.status(404).sendFile(`${__dirname}/public/index.html`)
 })
