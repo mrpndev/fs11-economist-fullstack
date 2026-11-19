@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { apiEndpoint } from "../utils/apiEndpoint";
 
 // A custom hook is a JavaScript function that can use React hooks and share
 // reusable behavior between components. The `use` prefix lets React recognize it.
@@ -13,7 +14,7 @@ export const useAPIPost = () => {
 		setError(null); // A new request should not keep showing an old error.
 
 		try {
-			const response = await fetch(`http://127.0.0.1:4000/api/${endpoint}`, {
+			const response = await fetch(apiEndpoint(endpoint), {
 				method: method,
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(body),
