@@ -15,7 +15,7 @@ export default function Auth({ setDebugValues, setToken }) {
 		// Prevent the browser's default form navigation so React can handle the submit.
 		event.preventDefault();
 
-		const endpoint = isLogin ? "login" : "register";
+		const endpoint = isLogin ? "auth/login" : "auth/register";
 		const body = isLogin
 			? { email, password }
 			: { full_name: fullName, email, password };

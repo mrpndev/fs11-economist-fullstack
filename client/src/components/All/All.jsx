@@ -10,7 +10,7 @@ export default function All({ token }) {
 	useEffect(() => {
 		const getCountries = async () => {
 			try {
-				const response = await fetch("http://127.0.0.1:4000/all", {
+				const response = await fetch("http://127.0.0.1:4000/api/routes/all", {
 					method: "GET",
 					headers: new Headers({
 						"Content-Type": "application/json",
