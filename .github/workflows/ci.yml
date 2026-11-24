@@ -1,19 +1,39 @@
-- name: Install server dependencies
-  working-directory: server
-  run: npm ci
+name: Continuous Integration
 
-- name: Run server tests
-  working-directory: server
-  run: npm test
+on:
+    pull_request:
+        branches:
+            - main
 
-- name: Install client dependencies
-  working-directory: client
-  run: npm ci
+jobs:
+    test:
+        runs-on: ubuntu-latest
 
-- name: Run client tests
-  working-directory: client
-  run: npm test
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-- name: Build client application
-  working-directory: client
-  run: npm run build
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 25
+
+            - name: Install server dependencies
+              working-directory: server
+              run: npm ci
+
+            - name: Run server tests
+              working-directory: server
+              run: npm test
+
+            - name: Install client dependencies
+              working-directory: client
+              run: npm ci
+
+            - name: Run client tests
+              working-directory: client
+              run: npm test
+
+            - name: Build client application
+              working-directory: client
+              run: npm run build
