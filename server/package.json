@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "jest --runInBand",
+    "test": "jest",
     "start": "node app.js",
     "dev": "nodemon app.js",
 	"generate-migration": "sequelize-cli migration:generate --name",
