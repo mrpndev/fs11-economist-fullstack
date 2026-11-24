@@ -30,6 +30,6 @@ jobs:
               working-directory: client
               run: npm ci
 
-            - name: Build client application
+            - name: Build the client
               working-directory: client
               run: npm run build
