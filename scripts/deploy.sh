@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+export NVM_DIR="$HOME/.nvm"
+
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+	source "$NVM_DIR/nvm.sh"
+	nvm use default
+fi
+
 set -euo pipefail
 
 APP_DIR="/var/www/economist"
