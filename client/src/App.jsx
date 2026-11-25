@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import './App.css'
 import Auth from './components/auth/Auth'
-import Debug from './components/Debug'
 import Nav from './components/Nav/Nav'
 import All from './components/All/All'
 
 function App() {
 
-	let [ debugValues, setDebugValues ] = useState("")
+	let [ , setDebugValues ] = useState("")
 	let [ token, setToken ] = useState(() => localStorage.getItem("token"))
+	const clearToken = useCallback(() => {
+		localStorage.removeItem("token")
+		setToken(null)
+	}, [])
 
 	
 	/* 
@@ -29,9 +32,9 @@ function App() {
 	}, [darkMode])
 
 	return (
-		<main className={ darkMode ? "dark-mode" : "light-mode"}>
-			<Nav darkMode={darkMode} setDarkMode={setDarkMode} />
-			{ token ? <All token={token} /> : <Auth setDebugValues={setDebugValues} setToken={setToken} />}
+		<main className={`app-shell ${darkMode ? "dark-mode" : "light-mode"}`}>
+			<Nav darkMode={darkMode} setDarkMode={setDarkMode} hasToken={Boolean(token)} onLogout={clearToken} />
+			{ token ? <All token={token} onLogout={clearToken} /> : <Auth setDebugValues={setDebugValues} setToken={setToken} />}
 			{/* <Debug debugValues={debugValues} /> */}
 		</main>
 	)

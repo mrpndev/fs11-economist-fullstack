@@ -6,11 +6,12 @@ const {
 	updateByID,
 	deleteByID,
 } = require("../controllers/api.controller");
-const requireRole = require("../middlewares/requireRole")
+const requireRole = require("../middlewares/requireRole");
 
 router.get("/all", getAll);
 
-router.post("/new", requireRole("admin", "editor"), createNew);
+// Any authenticated user can contribute a country observation.
+router.post("/new", createNew);
 
 router.get("/:country", getByCountry);
 

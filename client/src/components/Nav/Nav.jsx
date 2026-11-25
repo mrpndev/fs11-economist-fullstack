@@ -1,4 +1,3 @@
-import React from "react";
 import "./nav.css";
 
 /* 
@@ -10,10 +9,11 @@ import "./nav.css";
 	
 */
 
-export default function Nav({ darkMode, setDarkMode }) {
+export default function Nav({ darkMode, setDarkMode, hasToken, onLogout }) {
 	return (
-		<nav>
-			<button onClick={() => setDarkMode(!darkMode)}>{ darkMode ? "Light Mode" : "Dark Mode"}</button>
+		<nav className="topbar">
+			<a className="brand" href="/" aria-label="Economist home"><span className="brandMark">E</span><span>economist<span className="brandDot">.</span></span></a>
+			<div className="topbarRight"><span className="liveStatus"><span className="statusDot" /> Live data</span>{hasToken && <button className="logoutButton" onClick={onLogout}>Sign out</button>}<button className="themeToggle" onClick={() => setDarkMode(!darkMode)} aria-label="Toggle color theme">{darkMode ? "☼" : "☾"}</button></div>
 		</nav>
 	);
 }
